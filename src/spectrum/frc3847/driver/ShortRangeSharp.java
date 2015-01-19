@@ -49,7 +49,6 @@ public class ShortRangeSharp implements PIDSource {
     	return input.getAverageVoltage();
     }
 
-	@Override
 	public double pidGet() {
 		return getDistance();
 	}

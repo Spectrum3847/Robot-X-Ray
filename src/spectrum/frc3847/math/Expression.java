@@ -388,7 +388,6 @@ public class Expression {
 			this.input = input;
 		}
 
-		@Override
 		public boolean hasNext() {
 			return (pos < input.length());
 		}
@@ -406,7 +405,6 @@ public class Expression {
 			}
 		}
 
-		@Override
 		public String next() {
 			StringBuilder token = new StringBuilder();
 			if (pos >= input.length()) {
@@ -457,7 +455,6 @@ public class Expression {
 			return previousToken = token.toString();
 		}
 
-		@Override
 		public void remove() {
 			throw new ExpressionException("remove() not supported");
 		}

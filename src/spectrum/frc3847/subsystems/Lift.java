@@ -28,7 +28,6 @@ public class Lift extends Subsystem {
 		lift.set(v);
 	}
 	
-	@Override
 	protected void initDefaultCommand() {
 	}
 

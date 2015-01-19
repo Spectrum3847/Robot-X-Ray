@@ -13,10 +13,13 @@ public class HW {
     public static final int REAR_RDRIVE_MOTOR = 8;
     public static final int REAR_LDRIVE_MOTOR = 1;
     
-    public static final int H_WHEEL = 4;
+    public static final int H_WHEEL = 7;
     
     /**NON-DRIVEBASE MOTOR ASSIGNMENTS (PWM)**/
-    public static final int LIFT = 5;
+    
+    /**NON-DRIVEBASE MOTOR ASSIGNMENTS (CAN)**/
+    public static final int LIFTA = 1;
+    public static final int LIFT = 2;
     
     /**DIGITAL SENSOR ALLOCATIONS**/
     

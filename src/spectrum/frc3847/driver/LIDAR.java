@@ -31,7 +31,6 @@ public class LIDAR implements PIDSource{
 		return (int)Integer.toUnsignedLong(distance[0] << 8) + Byte.toUnsignedInt(distance[1]);
 	}
 
-	@Override
 	public double pidGet() {
 		return getDistance();
 	}
