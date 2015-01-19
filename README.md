@@ -3,7 +3,8 @@
 **Developers:** Matthew Skolaut
 
 ## About
-This software uses the WPILIBj hosted at [FIRSTForge](http://firstforge.wpi.edu/sf/projects/wpilib "FIRSTForge")
+This software uses the WPILIBj hosted at [FIRSTForge](http://firstforge.wpi.edu/sf/projects/wpilib "FIRSTForge").
+
 For more resources on this years development enviroment, go to [2015 FRC Control System](http://wpilib.screenstepslive.com/s/4485 "2015 FRC Control System")
 
 X-Ray will be Spectrum's 2015 entry into the FIRST Robotics Competition.
