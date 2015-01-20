@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveSelect extends CommandBase {
 
-    private Command DEFAULT = Init.butteryflydrive;
+    private Command DEFAULT = Init.halostrafedrive;
     private Command defaultDriveMode = DEFAULT;
 
     public DriveSelect(Command com) {
@@ -41,7 +41,7 @@ public class DriveSelect extends CommandBase {
         if (defaultDriveMode != null && defaultDriveMode.doesRequire(drivebase)) {
             defaultDriveMode.start();
         } else {
-            Init.butteryflydrive.start();        //This is the standard drive mode in case defaultDriveMode gets corrupt or unset
+            Init.halostrafedrive.start();        //This is the standard drive mode in case defaultDriveMode gets corrupt or unset
             defaultDriveMode = DEFAULT;
         }
     }

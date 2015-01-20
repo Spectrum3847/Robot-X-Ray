@@ -17,6 +17,7 @@ public class OI {
     public static final Joystick auxstick = new Joystick(HW.usbPort_four);
 
     public static final Button drive_toggle = new JoystickButton(gamepad.getGamepad(), Gamepad.A_BUTTON);
+    public static final Button hwheel_toggle = new JoystickButton(gamepad.getGamepad(), Gamepad.X_BUTTON);
     
     public static final Button joy_square = new JoystickButton(drivestick, 4);
     
@@ -25,7 +26,7 @@ public class OI {
     //Use this constructor to setup up button schedulers for commands
     public OI() {
     	drive_toggle.toggleWhenPressed(Init.triangledrive);
-    	
+    	hwheel_toggle.toggleWhenPressed(Init.drophwheel);
         joy_square.toggleWhenPressed(Init.squareoff);
         
         joy_tilt.toggleWhenActive(Init.tiltlift);

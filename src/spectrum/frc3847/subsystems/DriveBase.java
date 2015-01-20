@@ -4,6 +4,8 @@ import spectrum.frc3847.HW;
 import spectrum.frc3847.Init;
 import spectrum.frc3847.driver.ShortRangeSharp;
 import spectrum.frc3847.driver.SpectrumDrive;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -18,6 +20,7 @@ public class DriveBase extends Subsystem{
     private Victor[] Victor_arr;
     private final SpectrumDrive spectrumDrive;
     private final ShortRangeSharp leftir, rightir;
+    private DoubleSolenoid hlift;
 
     public DriveBase() {
         super();
@@ -26,6 +29,7 @@ public class DriveBase extends Subsystem{
         spectrumDrive = new SpectrumDrive(Victor_1, Victor_2, Victor_3, Victor_4);
         leftir = new ShortRangeSharp(HW.FRONT_LEFT_IR);
         rightir = new ShortRangeSharp(HW.FRONT_RIGHT_IR);
+        hlift = new DoubleSolenoid(HW.HWHEEL_DOUBLE, HW.HWHEEL_DOUBLE+1);
     }
 
     /**
@@ -78,6 +82,20 @@ public class DriveBase extends Subsystem{
     
     public void setHWheel(double v) {
     	h_wheel.set(v);
+    }
+    
+    public void setHLift(boolean drop) {
+    	if(drop)
+        	hlift.set(Value.kForward);
+    	else
+        	hlift.set(Value.kReverse);
+    }
+    public void dropHWheel() {
+    	hlift.set(Value.kForward);
+    }
+    
+    public void liftHWheel() {
+    	hlift.set(Value.kReverse);
     }
 
     public double getLeftSharpDistance() {

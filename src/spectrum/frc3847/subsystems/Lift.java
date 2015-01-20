@@ -13,7 +13,7 @@ public class Lift extends Subsystem {
 	
 	public Lift() {
 		lift = new Talon(HW.LIFT);
-		tilt = new DoubleSolenoid(0, 1);
+		tilt = new DoubleSolenoid(HW.LIFT_TILT_DOUBLE, HW.LIFT_TILT_DOUBLE + 1);
 	}
 	
 	public void tiltOn() {

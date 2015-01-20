@@ -24,6 +24,8 @@ public class HW {
     /**DIGITAL SENSOR ALLOCATIONS**/
     
     /**Pneumatics**/
+    public static final int HWHEEL_DOUBLE = 0;
+    public static final int LIFT_TILT_DOUBLE = 2;
     
     /**ANALOG SENSOR ALLOCATIONS**/
     public static final int FRONT_LEFT_IR = 0;
