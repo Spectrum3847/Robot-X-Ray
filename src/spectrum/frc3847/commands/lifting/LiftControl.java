@@ -19,7 +19,7 @@ public class LiftControl extends CommandBase {
 
 	@Override
 	protected void execute() {
-		double pow = Utilities.deadBand(OI.auxstick.getY(), 0.18);
+		double pow = Utilities.deadBand(OI.gamepad_aux.getY(), 0.18);
 		if(pow < 0) pow *= SmartDashboard.getNumber(Dashboard.LIFT_DOWN_MULTIPLIER, 0.1);
 		lift.setLift(pow);
 	}
