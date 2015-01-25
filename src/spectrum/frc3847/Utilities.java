@@ -1,5 +1,10 @@
 package spectrum.frc3847;
 
+import java.math.BigDecimal;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import spectrum.frc3847.math.Expression;
+
 
 /*
  * @author JAG, matthew
@@ -32,6 +37,12 @@ public class Utilities {
         //return MathUtils.pow(x, 7) + 0.02*MathUtils.pow(x, 7) + 0.08*x;
         return Math.pow(x, 3);
     }
+    
+    public static double smartRamp(String key, double input) {
+    	Expression exp = new Expression(SmartDashboard.getString(key));
+    	return exp.with("x", BigDecimal.valueOf(input)).eval().doubleValue();
+    }
+    
     public static double sign(double in) {
         return in / -in;
     }

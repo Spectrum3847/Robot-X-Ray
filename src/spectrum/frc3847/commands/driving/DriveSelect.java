@@ -1,6 +1,5 @@
 package spectrum.frc3847.commands.driving;
 
-import spectrum.frc3847.Init;
 import spectrum.frc3847.commands.CommandBase;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -11,15 +10,13 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveSelect extends CommandBase {
 
-    private Command DEFAULT = Init.halostrafedrive;
-    private Command defaultDriveMode = DEFAULT;
+    private final Command DEFAULT;
+    private Command defaultDriveMode;
 
     public DriveSelect(Command com) {
-        DEFAULT = com;
-    }
-
-    public DriveSelect() {
         requires(drivebase);
+        DEFAULT = com;
+        defaultDriveMode = DEFAULT;
     }
 
     public void setDefaultDriveMode(Command command) {
@@ -38,12 +35,10 @@ public class DriveSelect extends CommandBase {
      * starting defaultDriveMode if it's not null and it requires drivebase
      */
     protected void execute() {
-        if (defaultDriveMode != null && defaultDriveMode.doesRequire(drivebase)) {
-            defaultDriveMode.start();
-        } else {
-            Init.halostrafedrive.start();        //This is the standard drive mode in case defaultDriveMode gets corrupt or unset
+        if (defaultDriveMode == null || !defaultDriveMode.doesRequire(drivebase)) {
             defaultDriveMode = DEFAULT;
         }
+        defaultDriveMode.start();
     }
 
     protected boolean isFinished() {
