@@ -27,6 +27,7 @@ public class HW {
     public static final int HWHEEL_DOUBLE = 0;
     public static final int LIFT_TILT_DOUBLE = 2;
     public static final int ENDEFFECTOR_GRIP_DS = 4;
+    public static final int TOTERAKE_DS = 6;
     
     /**ANALOG SENSOR ALLOCATIONS**/
     public static final int FRONT_LEFT_IR = 0;

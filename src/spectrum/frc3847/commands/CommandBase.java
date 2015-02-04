@@ -4,6 +4,7 @@ import spectrum.frc3847.OI;
 import spectrum.frc3847.subsystems.DriveBase;
 import spectrum.frc3847.subsystems.EndEffector;
 import spectrum.frc3847.subsystems.Lift;
+import spectrum.frc3847.subsystems.ToteRake;
 import edu.wpi.first.wpilibj.command.Command;
 
 /*
@@ -17,6 +18,7 @@ public abstract class CommandBase extends Command {
     public static DriveBase drivebase = new DriveBase();
     public static Lift lift = new Lift();
     public static EndEffector endEffector = new EndEffector();
+    public static ToteRake toterake = new ToteRake();
 
     // Create a single static instance of all of your subsystems
     public static void init() {
