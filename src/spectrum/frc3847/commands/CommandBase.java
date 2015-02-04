@@ -2,6 +2,7 @@ package spectrum.frc3847.commands;
 
 import spectrum.frc3847.OI;
 import spectrum.frc3847.subsystems.DriveBase;
+import spectrum.frc3847.subsystems.EndEffector;
 import spectrum.frc3847.subsystems.Lift;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -15,6 +16,7 @@ public abstract class CommandBase extends Command {
     public static OI oi;
     public static DriveBase drivebase = new DriveBase();
     public static Lift lift = new Lift();
+    public static EndEffector endEffector = new EndEffector();
 
     // Create a single static instance of all of your subsystems
     public static void init() {

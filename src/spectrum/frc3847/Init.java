@@ -5,6 +5,7 @@ import spectrum.frc3847.commands.driving.DriveSelect;
 import spectrum.frc3847.commands.driving.HaloDrive;
 import spectrum.frc3847.commands.driving.HaloStrafeDrive;
 import spectrum.frc3847.commands.driving.SquareOff;
+import spectrum.frc3847.commands.endeffector.Expand;
 import spectrum.frc3847.commands.lifting.LiftControl;
 import spectrum.frc3847.commands.lifting.TiltLift;
 /**
@@ -20,6 +21,7 @@ public class Init {
     
     public static LiftControl liftcontrol = new LiftControl();
     public static TiltLift tiltlift = new TiltLift();
+    public static Expand expand = new Expand();
 
     public static void init() {
         CommandBase.init();

@@ -153,7 +153,7 @@ import java.util.Stack;
 * Expression e = new Expression("2.1234 >> 2");
 * 
 * e.addOperator(e.new Operator(">>", 30, true) {
-*     {@literal @}Override
+*     {//literal //}Override
 *     public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 *         return v1.movePointRight(v2.toBigInteger().intValue());
 *     }
@@ -174,7 +174,7 @@ import java.util.Stack;
 * Expression e = new Expression("2 * average(12,4,8)");
 * 
 * e.addFunction(e.new Function("average", 3) {
-*     {@literal @}Override
+*     {//literal //}Override
 *     public BigDecimal eval(List<BigDecimal> parameters) {
 *         BigDecimal sum = parameters.get(0).add(parameters.get(1)).add(parameters.get(2));
 *         return sum.divide(new BigDecimal(3));
@@ -190,7 +190,7 @@ import java.util.Stack;
 * <li>The SQRT() function implementation was taken from the book [The Java Programmers Guide To numerical Computing](http://www.amazon.de/Java-Number-Cruncher-Programmers-Numerical/dp/0130460419) (Ronald Mak, 2002)</li>
 * </ul>
 * 
-*@author Udo Klimaschewski (http://about.me/udo.klimaschewski)
+*author Udo Klimaschewski (http://about.me/udo.klimaschewski)
 */
 public class Expression {
 
@@ -201,7 +201,7 @@ public class Expression {
 			"3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679");
 
 	/**
-	 * The {@link MathContext} to use for calculations.
+	 * The {//link MathContext} to use for calculations.
 	 */
 	private MathContext mc = MathContext.DECIMAL32;
 
@@ -269,9 +269,9 @@ public class Expression {
 		/**
 		 * Creates a new function with given name and parameter count.
 		 * 
-		 * @param name
+		 * //param name
 		 *            The name of the function.
-		 * @param numParams
+		 * //param numParams
 		 *            The number of parameters for this function.
 		 */
 		public Function(String name, int numParams) {
@@ -290,10 +290,10 @@ public class Expression {
 		/**
 		 * Implementation for this function.
 		 * 
-		 * @param parameters
+		 * //param parameters
 		 *            Parameters will be passed by the expression evaluator as a
-		 *            {@link List} of {@link BigDecimal} values.
-		 * @return The function must return a new {@link BigDecimal} value as a
+		 *            {//link List} of {//link BigDecimal} values.
+		 * //return The function must return a new {//link BigDecimal} value as a
 		 *         computing result.
 		 */
 		public abstract BigDecimal eval(List<BigDecimal> parameters);
@@ -320,11 +320,11 @@ public class Expression {
 		/**
 		 * Creates a new operator.
 		 * 
-		 * @param oper
+		 * //param oper
 		 *            The operator name (pattern).
-		 * @param precedence
+		 * //param precedence
 		 *            The operators precedence.
-		 * @param leftAssoc
+		 * //param leftAssoc
 		 *            <code>true</code> if the operator is left associative,
 		 *            else <code>false</code>.
 		 */
@@ -349,17 +349,17 @@ public class Expression {
 		/**
 		 * Implementation for this operator.
 		 * 
-		 * @param v1
+		 * //param v1
 		 *            Operand 1.
-		 * @param v2
+		 * //param v2
 		 *            Operand 2.
-		 * @return The result of the operation.
+		 * //return The result of the operation.
 		 */
 		public abstract BigDecimal eval(BigDecimal v1, BigDecimal v2);
 	}
 
 	/**
-	 * Expression tokenizer that allows to iterate over a {@link String}
+	 * Expression tokenizer that allows to iterate over a {//link String}
 	 * expression token by token. Blank characters will be skipped.
 	 */
 	private class Tokenizer implements Iterator<String> {
@@ -381,7 +381,7 @@ public class Expression {
 		/**
 		 * Creates a new tokenizer for an expression.
 		 * 
-		 * @param input
+		 * //param input
 		 *            The expression string.
 		 */
 		public Tokenizer(String input) {
@@ -395,7 +395,7 @@ public class Expression {
 		/**
 		 * Peek at the next character, without advancing the iterator.
 		 * 
-		 * @return The next character or character 0, if at end of string.
+		 * //return The next character or character 0, if at end of string.
 		 */
 		private char peekNextChar() {
 			if (pos < (input.length() - 1)) {
@@ -462,7 +462,7 @@ public class Expression {
 		/**
 		 * Get the actual character position in the string.
 		 * 
-		 * @return The actual character position.
+		 * //return The actual character position.
 		 */
 		public int getPos() {
 			return pos;
@@ -473,44 +473,44 @@ public class Expression {
 	/**
 	 * Creates a new expression instance from an expression string.
 	 * 
-	 * @param expression
+	 * //param expression
 	 *            The expression. E.g. <code>"2.4*sin(3)/(2-4)"</code> or
 	 *            <code>"sin(y)>0 & max(z, 3)>3"</code>
 	 */
 	public Expression(String expression) {
 		this.expression = expression;
 		addOperator(new Operator("+", 20, true) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				return v1.add(v2, mc);
 			}
 		});
 		addOperator(new Operator("-", 20, true) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				return v1.subtract(v2, mc);
 			}
 		});
 		addOperator(new Operator("*", 30, true) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				return v1.multiply(v2, mc);
 			}
 		});
 		addOperator(new Operator("/", 30, true) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				return v1.divide(v2, mc);
 			}
 		});
 		addOperator(new Operator("%", 30, true) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				return v1.remainder(v2, mc);
 			}
 		});
 		addOperator(new Operator("^", 40, false) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				/*- 
 				 * Thanks to Gene Marin:
@@ -534,7 +534,7 @@ public class Expression {
 			}
 		});
 		addOperator(new Operator("&&", 4, false) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				boolean b1 = !v1.equals(BigDecimal.ZERO);
 				boolean b2 = !v2.equals(BigDecimal.ZERO);
@@ -543,7 +543,7 @@ public class Expression {
 		});
 
 		addOperator(new Operator("||", 2, false) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				boolean b1 = !v1.equals(BigDecimal.ZERO);
 				boolean b2 = !v2.equals(BigDecimal.ZERO);
@@ -552,21 +552,21 @@ public class Expression {
 		});
 
 		addOperator(new Operator(">", 10, false) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				return v1.compareTo(v2) == 1 ? BigDecimal.ONE : BigDecimal.ZERO;
 			}
 		});
 
 		addOperator(new Operator(">=", 10, false) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				return v1.compareTo(v2) >= 0 ? BigDecimal.ONE : BigDecimal.ZERO;
 			}
 		});
 
 		addOperator(new Operator("<", 10, false) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				return v1.compareTo(v2) == -1 ? BigDecimal.ONE
 						: BigDecimal.ZERO;
@@ -574,40 +574,40 @@ public class Expression {
 		});
 
 		addOperator(new Operator("<=", 10, false) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				return v1.compareTo(v2) <= 0 ? BigDecimal.ONE : BigDecimal.ZERO;
 			}
 		});
 
 		addOperator(new Operator("=", 7, false) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				return v1.compareTo(v2) == 0 ? BigDecimal.ONE : BigDecimal.ZERO;
 			}
 		});
 		addOperator(new Operator("==", 7, false) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				return operators.get("=").eval(v1, v2);
 			}
 		});
 
 		addOperator(new Operator("!=", 7, false) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				return v1.compareTo(v2) != 0 ? BigDecimal.ONE : BigDecimal.ZERO;
 			}
 		});
 		addOperator(new Operator("<>", 7, false) {
-			@Override
+			//Override
 			public BigDecimal eval(BigDecimal v1, BigDecimal v2) {
 				return operators.get("!=").eval(v1, v2);
 			}
 		});
 
 		addFunction(new Function("NOT", 1) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				boolean zero = parameters.get(0).compareTo(BigDecimal.ZERO) == 0;
 				return zero ? BigDecimal.ONE : BigDecimal.ZERO;
@@ -615,7 +615,7 @@ public class Expression {
 		});
 
 		addFunction(new Function("IF", 3) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				boolean isTrue = !parameters.get(0).equals(BigDecimal.ZERO);
 				return isTrue ? parameters.get(1) : parameters.get(2);
@@ -623,14 +623,14 @@ public class Expression {
 		});
 
 		addFunction(new Function("RANDOM", 0) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				double d = Math.random();
 				return new BigDecimal(d, mc);
 			}
 		});
 		addFunction(new Function("SIN", 1) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				double d = Math.sin(Math.toRadians(parameters.get(0)
 						.doubleValue()));
@@ -638,7 +638,7 @@ public class Expression {
 			}
 		});
 		addFunction(new Function("COS", 1) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				double d = Math.cos(Math.toRadians(parameters.get(0)
 						.doubleValue()));
@@ -646,7 +646,7 @@ public class Expression {
 			}
 		});
 		addFunction(new Function("TAN", 1) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				double d = Math.tan(Math.toRadians(parameters.get(0)
 						.doubleValue()));
@@ -654,42 +654,42 @@ public class Expression {
 			}
 		});
 		addFunction(new Function("SINH", 1) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				double d = Math.sinh(parameters.get(0).doubleValue());
 				return new BigDecimal(d, mc);
 			}
 		});
 		addFunction(new Function("COSH", 1) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				double d = Math.cosh(parameters.get(0).doubleValue());
 				return new BigDecimal(d, mc);
 			}
 		});
 		addFunction(new Function("TANH", 1) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				double d = Math.tanh(parameters.get(0).doubleValue());
 				return new BigDecimal(d, mc);
 			}
 		});
 		addFunction(new Function("RAD", 1) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				double d = Math.toRadians(parameters.get(0).doubleValue());
 				return new BigDecimal(d, mc);
 			}
 		});
 		addFunction(new Function("DEG", 1) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				double d = Math.toDegrees(parameters.get(0).doubleValue());
 				return new BigDecimal(d, mc);
 			}
 		});
 		addFunction(new Function("MAX", 2) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				BigDecimal v1 = parameters.get(0);
 				BigDecimal v2 = parameters.get(1);
@@ -697,7 +697,7 @@ public class Expression {
 			}
 		});
 		addFunction(new Function("MIN", 2) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				BigDecimal v1 = parameters.get(0);
 				BigDecimal v2 = parameters.get(1);
@@ -705,27 +705,27 @@ public class Expression {
 			}
 		});
 		addFunction(new Function("ABS", 1) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				return parameters.get(0).abs(mc);
 			}
 		});
 		addFunction(new Function("LOG", 1) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				double d = Math.log(parameters.get(0).doubleValue());
 				return new BigDecimal(d, mc);
 			}
 		});
 		addFunction(new Function("LOG10", 1) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				double d = Math.log10(parameters.get(0).doubleValue());
 				return new BigDecimal(d, mc);
 			}
 		});
 		addFunction(new Function("ROUND", 2) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				BigDecimal toRound = parameters.get(0);
 				int precision = parameters.get(1).intValue();
@@ -733,21 +733,21 @@ public class Expression {
 			}
 		});
 		addFunction(new Function("FLOOR", 1) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				BigDecimal toRound = parameters.get(0);
 				return toRound.setScale(0, RoundingMode.FLOOR);
 			}
 		});
 		addFunction(new Function("CEILING", 1) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				BigDecimal toRound = parameters.get(0);
 				return toRound.setScale(0, RoundingMode.CEILING);
 			}
 		});
 		addFunction(new Function("SQRT", 1) {
-			@Override
+			//Override
 			public BigDecimal eval(List<BigDecimal> parameters) {
 				/*
 				 * From The Java Programmers Guide To numerical Computing
@@ -788,9 +788,9 @@ public class Expression {
 	/**
 	 * Is the string a number?
 	 * 
-	 * @param st
+	 * //param st
 	 *            The string.
-	 * @return <code>true</code>, if the input string is a number.
+	 * //return <code>true</code>, if the input string is a number.
 	 */
 	private boolean isNumber(String st) {
 		if (st.charAt(0) == minusSign && st.length() == 1)
@@ -807,9 +807,9 @@ public class Expression {
 	 * Implementation of the <i>Shunting Yard</i> algorithm to transform an
 	 * infix expression to a RPN expression.
 	 * 
-	 * @param expression
+	 * //param expression
 	 *            The input expression in infx.
-	 * @return A RPN representation of the expression, with each token as a list
+	 * //return A RPN representation of the expression, with each token as a list
 	 *         member.
 	 */
 	private List<String> shuntingYard(String expression) {
@@ -890,7 +890,7 @@ public class Expression {
 	/**
 	 * Evaluates the expression.
 	 * 
-	 * @return The result of the expression.
+	 * //return The result of the expression.
 	 */
 	public BigDecimal eval() {
 
@@ -922,10 +922,10 @@ public class Expression {
 	/**
 	 * Sets the precision for expression evaluation.
 	 * 
-	 * @param precision
+	 * //param precision
 	 *            The new precision.
 	 * 
-	 * @return The expression, allows to chain methods.
+	 * //return The expression, allows to chain methods.
 	 */
 	public Expression setPrecision(int precision) {
 		this.mc = new MathContext(precision);
@@ -935,9 +935,9 @@ public class Expression {
 	/**
 	 * Sets the rounding mode for expression evaluation.
 	 * 
-	 * @param roundingMode
+	 * //param roundingMode
 	 *            The new rounding mode.
-	 * @return The expression, allows to chain methods.
+	 * //return The expression, allows to chain methods.
 	 */
 	public Expression setRoundingMode(RoundingMode roundingMode) {
 		this.mc = new MathContext(mc.getPrecision(), roundingMode);
@@ -947,9 +947,9 @@ public class Expression {
 	/**
 	 * Adds an operator to the list of supported operators.
 	 * 
-	 * @param operator
+	 * //param operator
 	 *            The operator to add.
-	 * @return The previous operator with that name, or <code>null</code> if
+	 * //return The previous operator with that name, or <code>null</code> if
 	 *         there was none.
 	 */
 	public Operator addOperator(Operator operator) {
@@ -959,9 +959,9 @@ public class Expression {
 	/**
 	 * Adds a function to the list of supported functions
 	 * 
-	 * @param function
+	 * //param function
 	 *            The function to add.
-	 * @return The previous operator with that name, or <code>null</code> if
+	 * //return The previous operator with that name, or <code>null</code> if
 	 *         there was none.
 	 */
 	public Function addFunction(Function function) {
@@ -971,11 +971,11 @@ public class Expression {
 	/**
 	 * Sets a variable value.
 	 * 
-	 * @param variable
+	 * //param variable
 	 *            The variable name.
-	 * @param value
+	 * //param value
 	 *            The variable value.
-	 * @return The expression, allows to chain methods.
+	 * //return The expression, allows to chain methods.
 	 */
 	public Expression setVariable(String variable, BigDecimal value) {
 		variables.put(variable, value);
@@ -985,11 +985,11 @@ public class Expression {
 	/**
 	 * Sets a variable value.
 	 * 
-	 * @param variable
+	 * //param variable
 	 *            The variable to set.
-	 * @param value
+	 * //param value
 	 *            The variable value.
-	 * @return The expression, allows to chain methods.
+	 * //return The expression, allows to chain methods.
 	 */
 	public Expression setVariable(String variable, String value) {
 		if (isNumber(value))
@@ -1004,11 +1004,11 @@ public class Expression {
 	/**
 	 * Sets a variable value.
 	 * 
-	 * @param variable
+	 * //param variable
 	 *            The variable to set.
-	 * @param value
+	 * //param value
 	 *            The variable value.
-	 * @return The expression, allows to chain methods.
+	 * //return The expression, allows to chain methods.
 	 */
 	public Expression with(String variable, BigDecimal value) {
 		return setVariable(variable, value);
@@ -1017,11 +1017,11 @@ public class Expression {
 	/**
 	 * Sets a variable value.
 	 * 
-	 * @param variable
+	 * //param variable
 	 *            The variable to set.
-	 * @param value
+	 * //param value
 	 *            The variable value.
-	 * @return The expression, allows to chain methods.
+	 * //return The expression, allows to chain methods.
 	 */
 	public Expression and(String variable, String value) {
 		return setVariable(variable, value);
@@ -1030,11 +1030,11 @@ public class Expression {
 	/**
 	 * Sets a variable value.
 	 * 
-	 * @param variable
+	 * //param variable
 	 *            The variable to set.
-	 * @param value
+	 * //param value
 	 *            The variable value.
-	 * @return The expression, allows to chain methods.
+	 * //return The expression, allows to chain methods.
 	 */
 	public Expression and(String variable, BigDecimal value) {
 		return setVariable(variable, value);
@@ -1043,11 +1043,11 @@ public class Expression {
 	/**
 	 * Sets a variable value.
 	 * 
-	 * @param variable
+	 * //param variable
 	 *            The variable to set.
-	 * @param value
+	 * //param value
 	 *            The variable value.
-	 * @return The expression, allows to chain methods.
+	 * //return The expression, allows to chain methods.
 	 */
 	public Expression with(String variable, String value) {
 		return setVariable(variable, value);
@@ -1057,7 +1057,7 @@ public class Expression {
 	 * Get an iterator for this expression, allows iterating over an expression
 	 * token by token.
 	 * 
-	 * @return A new iterator instance for this expression.
+	 * //return A new iterator instance for this expression.
 	 */
 	public Iterator<String> getExpressionTokenizer() {
 		return new Tokenizer(this.expression);
@@ -1068,7 +1068,7 @@ public class Expression {
 	 * calculation of the RPN per expression instance. If no cached instance
 	 * exists, a new one will be created and put to the cache.
 	 * 
-	 * @return The cached RPN instance.
+	 * //return The cached RPN instance.
 	 */
 	private List<String> getRPN() {
 		if (rpn == null) {
@@ -1081,7 +1081,7 @@ public class Expression {
 	 * Get a string representation of the RPN (Reverse Polish Notation) for this
 	 * expression.
 	 * 
-	 * @return A string with the RPN representation for this expression.
+	 * //return A string with the RPN representation for this expression.
 	 */
 	public String toRPN() {
 		String result = new String();

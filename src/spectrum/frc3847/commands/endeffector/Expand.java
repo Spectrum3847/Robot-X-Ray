@@ -1,12 +1,12 @@
-package spectrum.frc3847.commands.lifting;
+package spectrum.frc3847.commands.endeffector;
 
 import spectrum.frc3847.commands.CommandBase;
 
-public class TiltLift extends CommandBase {
+public class Expand extends CommandBase {
 
 	//Override
 	protected void initialize() {
-		lift.tiltOn();
+		endEffector.expand();
 	}
 
 	//Override
@@ -20,7 +20,7 @@ public class TiltLift extends CommandBase {
 
 	//Override
 	protected void end() {
-		lift.tiltOff();
+		endEffector.close();
 	}
 
 	//Override

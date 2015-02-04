@@ -2,8 +2,8 @@ package spectrum.frc3847;
 
 import java.math.BigDecimal;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import spectrum.frc3847.math.Expression;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /*

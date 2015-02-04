@@ -12,29 +12,30 @@ public class LiftControl extends CommandBase {
 		requires(lift);
 	}
 
-	@Override
+	//Override
 	protected void initialize() {
 		lift.setLift(0);
 	}
 
-	@Override
+	//Override
 	protected void execute() {
 		double pow = Utilities.deadBand(OI.gamepad_aux.getY(), 0.18);
-		if(pow < 0) pow *= SmartDashboard.getNumber(Dashboard.LIFT_DOWN_MULTIPLIER, 0.1);
+		pow = pow * -1;
+		if(pow < 0) pow *= SmartDashboard.getNumber(Dashboard.LIFT_DOWN_MULTIPLIER, 0.2);
 		lift.setLift(pow);
 	}
 
-	@Override
+	//Override
 	protected boolean isFinished() {
 		return false;
 	}
 
-	@Override
+	//Override
 	protected void end() {
 		lift.setLift(0);
 	}
 
-	@Override
+	//Override
 	protected void interrupted() {
 		end();
 	}

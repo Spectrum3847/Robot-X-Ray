@@ -26,6 +26,7 @@ public class HW {
     /**Pneumatics**/
     public static final int HWHEEL_DOUBLE = 0;
     public static final int LIFT_TILT_DOUBLE = 2;
+    public static final int ENDEFFECTOR_GRIP_DS = 4;
     
     /**ANALOG SENSOR ALLOCATIONS**/
     public static final int FRONT_LEFT_IR = 0;
@@ -38,8 +39,8 @@ public class HW {
     /**PID CONSTANTS**/
     
     /**JOYSTICKS/GAMEPAD ASSIGNMENTS**/
+    public static final int usbPort_zero = 0;
     public static final int usbPort_one = 1;
     public static final int usbPort_two = 2;
     public static final int usbPort_three = 3;
-    public static final int usbPort_four = 4;
 }
