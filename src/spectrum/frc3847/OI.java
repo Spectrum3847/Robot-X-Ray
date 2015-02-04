@@ -24,6 +24,8 @@ public class OI {
     
     public static final Button expand_toggle = new JoystickButton(gamepad_aux.getGamepad(), Gamepad.B_BUTTON);
     
+    public static final Button drop_toggle = new JoystickButton(gamepad_aux.getGamepad(),Gamepad.X_BUTTON);
+    
     //Use this constructor to setup up button schedulers for commands
     public OI() {
     	drive_toggle.toggleWhenPressed(Init.halostrafedrive);
@@ -31,5 +33,6 @@ public class OI {
         
         joy_tilt.toggleWhenActive(Init.tiltlift);
         expand_toggle.toggleWhenPressed(Init.expand);
+        drop_toggle.toggleWhenPressed(Init.drop);
     }
 }

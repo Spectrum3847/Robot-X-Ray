@@ -29,6 +29,8 @@ public class Dashboard {
     public static String THROTTLE_RAMP_FUNCTION = "Throttle Ramp Function";
     public static String STEER_RAMP_FUNCTION = "Steer Ramp Function";
     public static String STRAFE_RAMP_FUNCTION = "Strafe Ramp Function";
+    
+    public static String TOTE_COLLECTOR = "Tote Collection Speed";
 
     public static void intializeDashboard() {
         if (ENABLE_SPECTRUM_DASHBOARD) {
@@ -43,6 +45,8 @@ public class Dashboard {
             SmartDashboard.putNumber(Dashboard.SQUARE_OFF_PID_OUTPUT, 0);
             
             SmartDashboard.putNumber(LIFT_DOWN_MULTIPLIER, 0.1);
+            
+            SmartDashboard.putNumber(Dashboard.TOTE_COLLECTOR, 0);
             
             SmartDashboard.putString(THROTTLE_RAMP_FUNCTION, "0.1*x^9+0.3*x^5+0.1*x");
             SmartDashboard.putString(STEER_RAMP_FUNCTION, "x");
