@@ -1,26 +1,29 @@
 package spectrum.frc3847.subsystems;
 
+import spectrum.frc3847.Dashboard;
 import spectrum.frc3847.HW;
 import spectrum.frc3847.driver.SpectrumDoubleSolenoid;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.ControlMode;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Lift extends Subsystem {
 
-	public CANTalon lift;
-	public CANTalon lifta;
+	public CANTalon liftTalon;
+	public CANTalon liftTalon2;
 	public SpectrumDoubleSolenoid tilt;
 	public SpectrumDoubleSolenoid lock;
 	
 	public Lift() {
-		lift = new CANTalon(HW.LIFT);
-		lifta = new CANTalon(HW.LIFTA);
-		lifta.changeControlMode(ControlMode.Follower);
-		lifta.set(lift.getDeviceID());
-		lift.enableBrakeMode(true);
-		lifta.enableBrakeMode(true);
+		liftTalon = new CANTalon(HW.LIFT_TALON_ID);
+		liftTalon2 = new CANTalon(HW.LIFT_TALON_ID_TWO);
+		liftTalon2.changeControlMode(ControlMode.Follower);
+		liftTalon2.set(liftTalon.getDeviceID());
+		liftTalon.enableBrakeMode(true);
+		liftTalon2.enableBrakeMode(true);
+		liftTalon.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
 		tilt = new SpectrumDoubleSolenoid(HW.LIFT_TILT_DOUBLE, HW.LIFT_TILT_DOUBLE + 1);
 		lock = new SpectrumDoubleSolenoid(HW.LIFT_LOCK_DOUBLE, HW.LIFT_LOCK_DOUBLE + 1);
 	}
@@ -34,7 +37,7 @@ public class Lift extends Subsystem {
 	}
 	
 	public void setLift(double v) {
-		lift.set(v);
+		liftTalon.set(v);
 	}
 	
 	public void lockOn(){

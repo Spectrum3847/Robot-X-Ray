@@ -26,6 +26,8 @@ public class Dashboard {
     public static String SQUARE_OFF_PID_OUTPUT = "Square Off PID Output";
     
     public static String LIFT_DOWN_MULTIPLIER = "Lift Down Multiplier";
+	public static final String LIFT_DOWN_LIMIT = "Lift Down Limit";
+	public static final String LIFT_UP_LIMIT = "Lift Up Limit";
     
     public static String THROTTLE_RAMP_FUNCTION = "Throttle Ramp Function";
     public static String STEER_RAMP_FUNCTION = "Steer Ramp Function";
@@ -48,6 +50,8 @@ public class Dashboard {
             SmartDashboard.putNumber(Dashboard.SQUARE_OFF_PID_OUTPUT, 0);
             
             SmartDashboard.putNumber(LIFT_DOWN_MULTIPLIER, 0.1);
+            SmartDashboard.putNumber(LIFT_DOWN_LIMIT, 431);
+            SmartDashboard.putNumber(LIFT_UP_LIMIT, 640);
             
             SmartDashboard.putNumber(Dashboard.TOTE_COLLECTION, 0.6);
             
@@ -58,7 +62,7 @@ public class Dashboard {
     }
 
     private static void updatePut() {
-    	SmartDashboard.putNumber("Lift Pot", CommandBase.lift.lift.getAnalogInRaw());
+    	SmartDashboard.putNumber("Lift Pot", CommandBase.lift.liftTalon.getAnalogInRaw());
     }
 
     public static void updateDashboard() {

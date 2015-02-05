@@ -12,25 +12,25 @@ public class LiftControl extends CommandBase {
 		requires(lift);
 	}
 
-	//Override
 	protected void initialize() {
 		lift.setLift(0);
 	}
 
-	//Override
 	protected void execute() {
+		lift.liftTalon.setForwardSoftLimit((int)SmartDashboard.getNumber(Dashboard.LIFT_UP_LIMIT, 1023));
+		lift.liftTalon.setReverseSoftLimit((int)SmartDashboard.getNumber(Dashboard.LIFT_DOWN_LIMIT, 0));
+		lift.liftTalon.enableForwardSoftLimit(true);
+		lift.liftTalon.enableReverseSoftLimit(true);
 		double pow = Utilities.deadBand(OI.gamepad_aux.getY(), 0.18);
 		pow = pow * -1;
 		if(pow < 0) pow *= SmartDashboard.getNumber(Dashboard.LIFT_DOWN_MULTIPLIER, 0.2);
 		lift.setLift(pow);
 	}
 
-	//Override
 	protected boolean isFinished() {
 		return false;
 	}
 
-	//Override
 	protected void end() {
 		lift.setLift(0);
 	}

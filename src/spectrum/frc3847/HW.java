@@ -20,8 +20,8 @@ public class HW {
     public static final int RIGHT_COLLECTOR = 6;
     
     /**NON-DRIVEBASE MOTOR ASSIGNMENTS (CAN)**/
-    public static final int LIFTA = 1;
-    public static final int LIFT = 2;
+    public static final int LIFT_TALON_ID_TWO = 1;
+    public static final int LIFT_TALON_ID = 2;
     
     /**DIGITAL SENSOR ALLOCATIONS**/
     
