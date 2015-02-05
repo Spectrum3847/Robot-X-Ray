@@ -1,5 +1,6 @@
 package spectrum.frc3847;
 
+import spectrum.frc3847.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -29,11 +30,13 @@ public class Dashboard {
     public static String THROTTLE_RAMP_FUNCTION = "Throttle Ramp Function";
     public static String STEER_RAMP_FUNCTION = "Steer Ramp Function";
     public static String STRAFE_RAMP_FUNCTION = "Strafe Ramp Function";
+    public static String COMPRESSOR = "Compressor";
     
     public static String TOTE_COLLECTOR = "Tote Collection Speed";
 
     public static void intializeDashboard() {
         if (ENABLE_SPECTRUM_DASHBOARD) {
+        	SmartDashboard.putBoolean(COMPRESSOR, true);
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_P, 0);
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_I, 0);
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_D, 0);
@@ -55,6 +58,7 @@ public class Dashboard {
     }
 
     private static void updatePut() {
+    	SmartDashboard.putNumber("Lift Pot", CommandBase.lift.lift.getAnalogInRaw());
     }
 
     public static void updateDashboard() {
