@@ -1,6 +1,7 @@
 package spectrum.frc3847.subsystems;
 
 import spectrum.frc3847.HW;
+import spectrum.frc3847.driver.SpectrumDoubleSolenoid;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.ControlMode;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -11,7 +12,8 @@ public class Lift extends Subsystem {
 
 	public CANTalon lift;
 	public CANTalon lifta;
-	public DoubleSolenoid tilt;
+	public SpectrumDoubleSolenoid tilt;
+	public SpectrumDoubleSolenoid lock;
 	
 	public Lift() {
 		lift = new CANTalon(HW.LIFT);
@@ -20,7 +22,8 @@ public class Lift extends Subsystem {
 		lifta.set(lift.getDeviceID());
 		lift.enableBrakeMode(true);
 		lifta.enableBrakeMode(true);
-		tilt = new DoubleSolenoid(HW.LIFT_TILT_DOUBLE, HW.LIFT_TILT_DOUBLE + 1);
+		tilt = new SpectrumDoubleSolenoid(HW.LIFT_TILT_DOUBLE, HW.LIFT_TILT_DOUBLE + 1);
+		lock = new SpectrumDoubleSolenoid(HW.LIFT_LOCK_DOUBLE, HW.LIFT_LOCK_DOUBLE + 1);
 	}
 	
 	public void tiltOn() {
@@ -33,6 +36,14 @@ public class Lift extends Subsystem {
 	
 	public void setLift(double v) {
 		lift.set(v);
+	}
+	
+	public void lockOn(){
+		lock.set(Value.kForward);
+	}
+	
+	public void lockOff(){
+		lock.set(Value.kReverse);
 	}
 	
 	protected void initDefaultCommand() {

@@ -26,10 +26,13 @@ public class HW {
     /**DIGITAL SENSOR ALLOCATIONS**/
     
     /**Pneumatics**/
+    public static final int PCM_ONE = 0;
+    public static final int PCM_TWO = 1;
     public static final int HWHEEL_DOUBLE = 0;
     public static final int LIFT_TILT_DOUBLE = 2;
     public static final int ENDEFFECTOR_GRIP_DS = 4;
     public static final int TOTERAKE_DS = 6;
+    public static final int LIFT_LOCK_DOUBLE = 10; //Uses SpectrumDoubleSolenoid to define 1 as CAN ID
     
     /**ANALOG SENSOR ALLOCATIONS**/
     public static final int FRONT_LEFT_IR = 0;
@@ -46,4 +49,5 @@ public class HW {
     public static final int usbPort_one = 1;
     public static final int usbPort_two = 2;
     public static final int usbPort_three = 3;
+
 }
