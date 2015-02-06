@@ -5,19 +5,20 @@ import spectrum.frc3847.commands.CommandBase;
 /**
  *
  */
-public class Hold extends CommandBase {
-
-    public Hold() {
+public class Collect extends CommandBase {
+	
+    public Collect() {
         requires(endEffector);
     }
 
     @Override
     protected void initialize() {
-    	endEffector.setHoldSpeed(0);
+    	endEffector.setCollection(0);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	endEffector.collectionIn();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -27,11 +28,12 @@ public class Hold extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	endEffector.setHoldSpeed(0);
+    	endEffector.setCollection(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

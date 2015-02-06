@@ -16,8 +16,8 @@ public class HW {
     public static final int H_WHEEL = 7;
     
     /**NON-DRIVEBASE MOTOR ASSIGNMENTS (PWM)**/
-    public static final int TR_VICTOR_ONE = 3;
-    public static final int TR_VICTOR_TWO = 6;
+    public static final int LEFT_COLLECTOR = 3;
+    public static final int RIGHT_COLLECTOR = 6;
     
     /**NON-DRIVEBASE MOTOR ASSIGNMENTS (CAN)**/
     public static final int LIFTA = 1;
