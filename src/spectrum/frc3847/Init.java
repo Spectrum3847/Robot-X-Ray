@@ -6,6 +6,7 @@ import spectrum.frc3847.commands.driving.HaloDrive;
 import spectrum.frc3847.commands.driving.HaloStrafeDrive;
 import spectrum.frc3847.commands.driving.SquareOff;
 import spectrum.frc3847.commands.endeffector.Collect;
+import spectrum.frc3847.commands.endeffector.Eject;
 import spectrum.frc3847.commands.endeffector.Expand;
 import spectrum.frc3847.commands.lifting.LiftControl;
 import spectrum.frc3847.commands.lifting.TiltLift;
@@ -26,6 +27,7 @@ public class Init {
     public static Expand expand = new Expand();
     public static Drop drop = new Drop();
     public static Collect eeCollect = new Collect();
+    public static Eject eeEject = new Eject();
 
     public static void init() {
         CommandBase.init();

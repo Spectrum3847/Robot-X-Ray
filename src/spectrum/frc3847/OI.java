@@ -37,6 +37,7 @@ public class OI {
         joy_tilt.toggleWhenActive(Init.tiltlift);
         expand_toggle.toggleWhenPressed(Init.expand);
         drop_toggle.toggleWhenPressed(Init.drop);
-        collect.toggleWhenPressed(Init.eeCollect);
+        collect.whileHeld(Init.eeCollect);
+        eject.whileHeld(Init.eeEject);
     }
 }
