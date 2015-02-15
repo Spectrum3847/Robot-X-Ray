@@ -16,12 +16,14 @@ public class HW {
     public static final int H_WHEEL = 7;
     
     /**NON-DRIVEBASE MOTOR ASSIGNMENTS (PWM)**/
-    public static final int LEFT_COLLECTOR = 3;
-    public static final int RIGHT_COLLECTOR = 6;
+    public static final int LEFT_COLLECTOR_ID = 3;
+    public static final int RIGHT_COLLECTOR_ID = 4;
     
     /**NON-DRIVEBASE MOTOR ASSIGNMENTS (CAN)**/
-    public static final int LIFT_TALON_ID_TWO = 1;
-    public static final int LIFT_TALON_ID = 2;
+    public static final int LIFT_TALON_ID = 1;
+    public static final int LIFT_TALON_ID_TWO = 2;
+    public static final int TAPE_TALON_ID = 1;
+    public static final int TAPE_TALON_ID_TWO = 2;
     
     /**DIGITAL SENSOR ALLOCATIONS**/
     
@@ -35,8 +37,6 @@ public class HW {
     public static final int LIFT_LOCK_DOUBLE = 10; //Uses SpectrumDoubleSolenoid to define 1 as CAN ID
     
     /**ANALOG SENSOR ALLOCATIONS**/
-    public static final int FRONT_LEFT_IR = 0;
-    public static final int FRONT_RIGHT_IR = 1;
     
     /**RELAY ALLOCATIONS**/
     

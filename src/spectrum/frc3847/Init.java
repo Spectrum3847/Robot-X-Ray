@@ -1,6 +1,7 @@
 package spectrum.frc3847;
 
 import spectrum.frc3847.commands.CommandBase;
+import spectrum.frc3847.commands.SendCameraImage;
 import spectrum.frc3847.commands.driving.DriveSelect;
 import spectrum.frc3847.commands.driving.HaloDrive;
 import spectrum.frc3847.commands.driving.HaloStrafeDrive;
@@ -26,6 +27,7 @@ public class Init {
     public static Drop drop = new Drop();
     public static Collect eeCollect = new Collect();
     public static Eject eeEject = new Eject();
+    public static SendCameraImage sendCam = new SendCameraImage();
 
     public static void init() {
         CommandBase.init();

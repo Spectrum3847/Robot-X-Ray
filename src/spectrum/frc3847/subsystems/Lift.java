@@ -48,5 +48,4 @@ public class Lift extends Subsystem {
 	
 	protected void initDefaultCommand() {
 	}
-
 }

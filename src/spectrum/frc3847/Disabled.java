@@ -13,6 +13,7 @@ public class Disabled {
 
     public static void init() {
         Scheduler.getInstance().removeAll();
+        //Init.sendCam.start();
     }
 
     public static void periodic() {
@@ -23,6 +24,10 @@ public class Disabled {
             SmartDashboard.putBoolean("Disabled Toggle", b);
         }
         t++;
+        Scheduler.getInstance().run();
+        Dashboard.updateDashboard();
+
+
 
     }
 
