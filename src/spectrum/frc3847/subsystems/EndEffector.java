@@ -3,6 +3,7 @@ package spectrum.frc3847.subsystems;
 import spectrum.frc3847.Dashboard;
 import spectrum.frc3847.HW;
 import spectrum.frc3847.driver.SpectrumDoubleSolenoid;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -17,12 +18,12 @@ public class EndEffector extends Subsystem {
     // here. Call these from Commands.
 	
 	private SpectrumDoubleSolenoid fSolenoid;
-	private Victor leftAlign, rightAlign;
+	private CANTalon leftAlign, rightAlign;
 	
 	public EndEffector(){
 		fSolenoid = new SpectrumDoubleSolenoid(HW.ENDEFFECTOR_GRIP_DS,HW.ENDEFFECTOR_GRIP_DS+1);
-		leftAlign = new Victor(HW.LEFT_COLLECTOR);
-		rightAlign = new Victor(HW.RIGHT_COLLECTOR);
+		leftAlign = new CANTalon(HW.LEFT_COLLECTOR_ID);
+		rightAlign = new CANTalon(HW.RIGHT_COLLECTOR_ID);
 	}
 
 	public void expand(){
@@ -43,7 +44,7 @@ public class EndEffector extends Subsystem {
 	}
 	
 	public void collectionOut(){
-		setCollection(SmartDashboard.getNumber(Dashboard.TOTE_COLLECTION, -1.0));
+		setCollection(SmartDashboard.getNumber(Dashboard.TOTE_EJECTION, -1.0));
 	}
     protected void initDefaultCommand() {
         // Set the default command for a subsystem here.

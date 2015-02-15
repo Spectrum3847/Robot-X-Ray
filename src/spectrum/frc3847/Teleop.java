@@ -11,6 +11,7 @@ public class Teleop {
         Scheduler.getInstance().removeAll();
         Init.driveselect.start();
         Init.liftcontrol.start();
+        //Init.sendCam.start();
     }
 
     public static void periodic() {
