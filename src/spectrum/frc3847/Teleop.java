@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 public class Teleop {
     public static void init() {
         Scheduler.getInstance().removeAll();
-        Init.driveselect.start();
         Init.liftcontrol.start();
     }
 

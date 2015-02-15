@@ -23,7 +23,8 @@ public class LiftControl extends CommandBase {
 		lift.liftTalon.enableReverseSoftLimit(true);
 		double pow = Utilities.deadBand(OI.gamepad_aux.getY(), 0.18);
 		pow = pow * -1;
-		if(pow < 0) pow *= SmartDashboard.getNumber(Dashboard.LIFT_DOWN_MULTIPLIER, 0.2);
+		if(pow < 0) pow *= SmartDashboard.getNumber(Dashboard.LIFT_DOWN_MULTIPLIER, 0.3);
+		else pow *= SmartDashboard.getNumber(Dashboard.LIFT_UP_MULTIPLIER, 0.3);
 		lift.setLift(pow);
 	}
 

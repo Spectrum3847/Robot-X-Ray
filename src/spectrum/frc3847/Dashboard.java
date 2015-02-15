@@ -18,6 +18,7 @@ public class Dashboard {
     public static String DRIVEBASE_PID_P = "Drivebase PID P";
     public static String DRIVEBASE_PID_I = "Drivebase PID I";
     public static String DRIVEBASE_PID_D = "Drivebase PID D";
+    public static String DRIVEBASE_PID_F = "Drivebase PID F";
     public static String DRIVEBASE_PID_TOLERANCE = "Drivebase PID Tolerance";
     
     public static String SQUARE_OFF_PID_ERROR = "Square Off PID Error";
@@ -26,8 +27,9 @@ public class Dashboard {
     public static String SQUARE_OFF_PID_OUTPUT = "Square Off PID Output";
     
     public static String LIFT_DOWN_MULTIPLIER = "Lift Down Multiplier";
-	public static final String LIFT_DOWN_LIMIT = "Lift Down Limit";
-	public static final String LIFT_UP_LIMIT = "Lift Up Limit";
+    public static String LIFT_UP_MULTIPLIER = "Lift Up Multiplier";
+	public static String LIFT_DOWN_LIMIT = "Lift Down Limit";
+	public static String LIFT_UP_LIMIT = "Lift Up Limit";
     
     public static String THROTTLE_RAMP_FUNCTION = "Throttle Ramp Function";
     public static String STEER_RAMP_FUNCTION = "Steer Ramp Function";
@@ -42,6 +44,7 @@ public class Dashboard {
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_P, 0);
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_I, 0);
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_D, 0);
+            SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_F, 0);
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_TOLERANCE, 5);
             
             SmartDashboard.putNumber(Dashboard.SQUARE_OFF_PID_ERROR, 0);
@@ -49,13 +52,14 @@ public class Dashboard {
             SmartDashboard.putNumber(Dashboard.SQUARE_OFF_PID_RIGHT_SENSOR, 0);
             SmartDashboard.putNumber(Dashboard.SQUARE_OFF_PID_OUTPUT, 0);
             
-            SmartDashboard.putNumber(LIFT_DOWN_MULTIPLIER, 0.1);
-            SmartDashboard.putNumber(LIFT_DOWN_LIMIT, 431);
-            SmartDashboard.putNumber(LIFT_UP_LIMIT, 640);
+            SmartDashboard.putNumber(LIFT_DOWN_MULTIPLIER, 0.3);
+            SmartDashboard.putNumber(LIFT_UP_MULTIPLIER, 0.3);
+            SmartDashboard.putNumber(LIFT_DOWN_LIMIT, 30);
+            SmartDashboard.putNumber(LIFT_UP_LIMIT, 300);
             
             SmartDashboard.putNumber(Dashboard.TOTE_COLLECTION, 0.6);
             
-            SmartDashboard.putString(THROTTLE_RAMP_FUNCTION, "0.1*x^9+0.3*x^5+0.1*x");
+            SmartDashboard.putString(THROTTLE_RAMP_FUNCTION, "0.5*x");
             SmartDashboard.putString(STEER_RAMP_FUNCTION, "x");
             SmartDashboard.putString(STRAFE_RAMP_FUNCTION, "x");
         }
@@ -63,6 +67,9 @@ public class Dashboard {
 
     private static void updatePut() {
     	SmartDashboard.putNumber("Lift Pot", CommandBase.lift.liftTalon.getAnalogInRaw());
+
+        if(CommandBase.drivebase.getIMU().isConnected())
+        	SmartDashboard.putNumber("Yaw", CommandBase.drivebase.getIMU().getYaw());
     }
 
     public static void updateDashboard() {

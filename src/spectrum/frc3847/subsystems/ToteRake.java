@@ -2,7 +2,6 @@ package spectrum.frc3847.subsystems;
 
 import spectrum.frc3847.HW;
 import spectrum.frc3847.driver.SpectrumDoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
