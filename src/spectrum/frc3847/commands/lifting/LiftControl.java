@@ -41,5 +41,4 @@ public class LiftControl extends CommandBase {
 	protected void interrupted() {
 		end();
 	}
-
 }

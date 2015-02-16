@@ -1,13 +1,11 @@
 package spectrum.frc3847.subsystems;
 
-import spectrum.frc3847.Dashboard;
 import spectrum.frc3847.HW;
 import spectrum.frc3847.driver.SpectrumDoubleSolenoid;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.ControlMode;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Lift extends Subsystem {
 
@@ -50,5 +48,4 @@ public class Lift extends Subsystem {
 	
 	protected void initDefaultCommand() {
 	}
-
 }

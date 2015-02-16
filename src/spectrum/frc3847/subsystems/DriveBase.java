@@ -2,10 +2,12 @@ package spectrum.frc3847.subsystems;
 
 import spectrum.frc3847.HW;
 import spectrum.frc3847.Init;
-import spectrum.frc3847.driver.ShortRangeSharp;
+import spectrum.frc3847.driver.IMU;
 import spectrum.frc3847.driver.SpectrumDrive;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -19,17 +21,18 @@ public class DriveBase extends Subsystem{
     private Victor h_wheel;
     private Victor[] Victor_arr;
     private final SpectrumDrive spectrumDrive;
-    private final ShortRangeSharp leftir, rightir;
     private DoubleSolenoid hlift;
+    private SerialPort serial;
+    private IMU imu;
 
     public DriveBase() {
         super();
         setVictor();
         h_wheel = new Victor(HW.H_WHEEL);
         spectrumDrive = new SpectrumDrive(Victor_1, Victor_2, Victor_3, Victor_4);
-        leftir = new ShortRangeSharp(HW.FRONT_LEFT_IR);
-        rightir = new ShortRangeSharp(HW.FRONT_RIGHT_IR);
         hlift = new DoubleSolenoid(HW.HWHEEL_DOUBLE, HW.HWHEEL_DOUBLE+1);
+        serial = new SerialPort(115200, Port.kMXP);
+        imu = new IMU(serial, (byte)10);
     }
 
     /**
@@ -41,7 +44,7 @@ public class DriveBase extends Subsystem{
     }
 
     public void setArcade(double straight_speed, double turn_speed) {
-        spectrumDrive.arcadeDrive(straight_speed, turn_speed, true);
+        spectrumDrive.arcadeDrive(straight_speed, turn_speed, false);
     }
 
     public void setTank(double left, double right) {
@@ -97,20 +100,8 @@ public class DriveBase extends Subsystem{
     public void liftHWheel() {
     	hlift.set(Value.kReverse);
     }
-
-    public double getLeftSharpDistance() {
-    	return leftir.getDistance();
-    }
-
-    public double getRightSharpDistance() {
-    	return rightir.getDistance();
-    }
-
-    public double getLeftSharpVoltage() {
-    	return leftir.getVoltage();
-    }
-
-    public double getRightSharpVoltage() {
-    	return rightir.getVoltage();
+    
+    public IMU getIMU() {
+    	return imu;
     }
 }
