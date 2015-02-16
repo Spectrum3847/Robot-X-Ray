@@ -6,22 +6,21 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Pneumatics extends Subsystem {
-	private Compressor compressor;
+	private Compressor fCompressor;
 
 	public Pneumatics() {
-		compressor = new Compressor(HW.PCM_ONE);
+		fCompressor = new Compressor(HW.PCM_ONE);
 		startCompressor();
 	}
 
 	public void stopCompressor (){
-		compressor.stop();
+		fCompressor.stop();
 	}
 	
 	public void startCompressor (){
-		compressor.start();
+		fCompressor.start();
 	}
 	protected void initDefaultCommand() {
         setDefaultCommand(new CompressorDashboard());
 	}
-
 }

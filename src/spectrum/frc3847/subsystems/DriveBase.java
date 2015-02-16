@@ -2,9 +2,12 @@ package spectrum.frc3847.subsystems;
 
 import spectrum.frc3847.HW;
 import spectrum.frc3847.Init;
+import spectrum.frc3847.driver.IMU;
 import spectrum.frc3847.driver.SpectrumDrive;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -14,18 +17,22 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveBase extends Subsystem{
 	
-    private Victor Victor_1, Victor_2, Victor_3, Victor_4;
-    private Victor h_wheel;
-    private Victor[] Victor_arr;
-    private final SpectrumDrive spectrumDrive;
-    private DoubleSolenoid hlift;
+    private Victor fVic1, fVic2, fVic3, fVic4;
+    private Victor fVicH;
+    private Victor[] fVicArray;
+    private final SpectrumDrive fSpectrumDrive;
+    private DoubleSolenoid fLift;
+    private SerialPort fSerial;
+    private IMU fIMU;
 
     public DriveBase() {
         super();
         setVictor();
-        h_wheel = new Victor(HW.H_WHEEL);
-        spectrumDrive = new SpectrumDrive(Victor_1, Victor_2, Victor_3, Victor_4);
-        hlift = new DoubleSolenoid(HW.HWHEEL_DOUBLE, HW.HWHEEL_DOUBLE+1);
+        fVicH = new Victor(HW.H_WHEEL);
+        fSpectrumDrive = new SpectrumDrive(fVic1, fVic2, fVic3, fVic4);
+        fLift = new DoubleSolenoid(HW.HWHEEL_DOUBLE, HW.HWHEEL_DOUBLE+1);
+        fSerial = new SerialPort(115200, Port.kMXP);
+        fIMU = new IMU(fSerial, (byte)10);
     }
 
     /**
@@ -37,60 +44,64 @@ public class DriveBase extends Subsystem{
     }
 
     public void setArcade(double straight_speed, double turn_speed) {
-        spectrumDrive.arcadeDrive(straight_speed, turn_speed, true);
+        fSpectrumDrive.arcadeDrive(straight_speed, turn_speed, false);
     }
 
     public void setTank(double left, double right) {
-        spectrumDrive.tankDrive(left, right);
+        fSpectrumDrive.tankDrive(left, right);
     }
 
     public void setCheesyDrive(double throttle, double wheel, boolean quickTurn) {
-        spectrumDrive.Cheesydrive(throttle, -1 * wheel, quickTurn);
+        fSpectrumDrive.Cheesydrive(throttle, -1 * wheel, quickTurn);
     }
 
     public void setCheesySensetivity(double sensetivity) {
-        spectrumDrive.setSensitivity(sensetivity);
+        fSpectrumDrive.setSensitivity(sensetivity);
     }
 
     private void setVictor() {
-        Victor_arr = new Victor[6];
-        Victor_1 = new Victor(HW.FRONT_RDRIVE_MOTOR);
-        Victor_arr[0] = Victor_1;
-        Victor_2 = new Victor(HW.REAR_RDRIVE_MOTOR);
-        Victor_arr[1] = Victor_2;
-        Victor_3 = new Victor(HW.FRONT_LDRIVE_MOTOR);
-        Victor_arr[2] = Victor_3;
-        Victor_4 = new Victor(HW.REAR_LDRIVE_MOTOR);
-        Victor_arr[3] = Victor_4;
+        fVicArray = new Victor[6];
+        fVic1 = new Victor(HW.FRONT_RDRIVE_MOTOR);
+        fVicArray[0] = fVic1;
+        fVic2 = new Victor(HW.REAR_RDRIVE_MOTOR);
+        fVicArray[1] = fVic2;
+        fVic3 = new Victor(HW.FRONT_LDRIVE_MOTOR);
+        fVicArray[2] = fVic3;
+        fVic4 = new Victor(HW.REAR_LDRIVE_MOTOR);
+        fVicArray[3] = fVic4;
     }
 
     public Victor getVictor(int id) {
-        return Victor_arr[id];
+        return fVicArray[id];
     }
 
     public Victor[] getVictorArr() {
-        return Victor_arr;
+        return fVicArray;
     }
 
     public SpectrumDrive getDrive() {
-        return spectrumDrive;
+        return fSpectrumDrive;
     }
     
     public void setHWheel(double v) {
-    	h_wheel.set(v);
+    	fVicH.set(v);
     }
     
     public void setHLift(boolean drop) {
     	if(drop)
-        	hlift.set(Value.kForward);
+        	fLift.set(Value.kForward);
     	else
-        	hlift.set(Value.kReverse);
+        	fLift.set(Value.kReverse);
     }
     public void dropHWheel() {
-    	hlift.set(Value.kForward);
+    	fLift.set(Value.kForward);
     }
     
     public void liftHWheel() {
-    	hlift.set(Value.kReverse);
+    	fLift.set(Value.kReverse);
+    }
+    
+    public IMU getIMU() {
+    	return fIMU;
     }
 }

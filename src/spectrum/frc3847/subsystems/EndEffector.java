@@ -12,10 +12,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class EndEffector extends Subsystem {
-    
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	
 	private SpectrumDoubleSolenoid fSolenoid;
 	private CANTalon leftAlign, rightAlign;
 	
@@ -46,8 +42,6 @@ public class EndEffector extends Subsystem {
 		setCollection(SmartDashboard.getNumber(Dashboard.TOTE_EJECTION, -1.0));
 	}
     protected void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     }
 }
 

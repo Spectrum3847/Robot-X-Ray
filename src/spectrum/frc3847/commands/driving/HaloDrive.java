@@ -4,13 +4,15 @@ import spectrum.frc3847.Dashboard;
 import spectrum.frc3847.OI;
 import spectrum.frc3847.Utilities;
 import spectrum.frc3847.commands.CommandBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class HaloDrive extends CommandBase {
 
 	protected void initialize() {
-		System.out.println("HaloStrafe, GO!");
+		System.out.println("HaloDrive, GO!");
         drivebase.setHWheel(0);
 		drivebase.liftHWheel();
+		drivebase.getIMU().zeroYaw();
 	}
 
 	protected void execute() {
@@ -22,6 +24,8 @@ public class HaloDrive extends CommandBase {
         double scaled_turn = Utilities.smartRamp(Dashboard.STEER_RAMP_FUNCTION, turn);
         
         drivebase.setArcade(scaled_throttle, scaled_turn);
+
+    	SmartDashboard.putNumber("Steer", scaled_turn);
 	}
 
 	protected boolean isFinished() {

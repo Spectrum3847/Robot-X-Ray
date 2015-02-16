@@ -4,34 +4,39 @@ import spectrum.frc3847.HW;
 import spectrum.frc3847.driver.SpectrumDoubleSolenoid;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.ControlMode;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Lift extends Subsystem {
 
-	public CANTalon liftTalon;
-	public CANTalon liftTalon2;
-	public SpectrumDoubleSolenoid tilt;
-	public SpectrumDoubleSolenoid lock;
+	private CANTalon liftTalon;
+	private CANTalon liftTalon2;
+	private SpectrumDoubleSolenoid fTilt;
+	private SpectrumDoubleSolenoid fLock;
+	public DigitalInput fUpLim;
+	private DigitalInput fLowLim;
 	
 	public Lift() {
+		fTilt = new SpectrumDoubleSolenoid(HW.LIFT_TILT_DOUBLE, HW.LIFT_TILT_DOUBLE + 1);
+		fLock = new SpectrumDoubleSolenoid(HW.LIFT_LOCK_DOUBLE, HW.LIFT_LOCK_DOUBLE + 1);
 		liftTalon = new CANTalon(HW.LIFT_TALON_ID);
 		liftTalon2 = new CANTalon(HW.LIFT_TALON_ID_TWO);
+		fUpLim = new DigitalInput(1);
+		
+		liftTalon.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
 		liftTalon2.changeControlMode(ControlMode.Follower);
 		liftTalon2.set(liftTalon.getDeviceID());
 		liftTalon.enableBrakeMode(true);
 		liftTalon2.enableBrakeMode(true);
-		liftTalon.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
-		tilt = new SpectrumDoubleSolenoid(HW.LIFT_TILT_DOUBLE, HW.LIFT_TILT_DOUBLE + 1);
-		lock = new SpectrumDoubleSolenoid(HW.LIFT_LOCK_DOUBLE, HW.LIFT_LOCK_DOUBLE + 1);
 	}
 	
 	public void tiltOn() {
-		tilt.set(Value.kForward);
+		fTilt.set(Value.kForward);
 	}
 	
 	public void tiltOff() {
-		tilt.set(Value.kReverse);
+		fTilt.set(Value.kReverse);
 	}
 	
 	public void setLift(double v) {
@@ -39,14 +44,25 @@ public class Lift extends Subsystem {
 	}
 	
 	public void lockOn(){
-		lock.set(Value.kForward);
+		fLock.set(Value.kForward);
 	}
 	
 	public void lockOff(){
-		lock.set(Value.kReverse);
+		fLock.set(Value.kReverse);
+	}
+	
+	public double getPotValue() {
+		return liftTalon.getAnalogInRaw();
+	}
+	
+	public CANTalon getTalon() {
+		return liftTalon;
+	}
+	
+	public DigitalInput getUpLim() {
+		return fUpLim;
 	}
 	
 	protected void initDefaultCommand() {
 	}
-
 }

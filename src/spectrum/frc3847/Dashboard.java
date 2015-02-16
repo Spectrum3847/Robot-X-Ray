@@ -11,32 +11,34 @@ public class Dashboard {
 
     static final boolean ENABLE_SPECTRUM_DASHBOARD = true;
     static final double SHORT_DELAY = .015;
-    static double shortOldTime = 0.0;
     static final double LONG_DELAY = 2;
+    
+    static double shortOldTime = 0.0;
     static double longOldTime = 0.0;
     
-    public static String DRIVEBASE_PID_P = "Drivebase PID P";
-    public static String DRIVEBASE_PID_I = "Drivebase PID I";
-    public static String DRIVEBASE_PID_D = "Drivebase PID D";
-    public static String DRIVEBASE_PID_TOLERANCE = "Drivebase PID Tolerance";
+    public static final String DRIVEBASE_PID_P = "Drivebase PID P";
+    public static final String DRIVEBASE_PID_I = "Drivebase PID I";
+    public static final String DRIVEBASE_PID_D = "Drivebase PID D";
+    public static final String DRIVEBASE_PID_F = "Drivebase PID F";
+    public static final String DRIVEBASE_PID_TOLERANCE = "Drivebase PID Tolerance";
     
-    public static String SQUARE_OFF_PID_ERROR = "Square Off PID Error";
-    public static String SQUARE_OFF_PID_LEFT_SENSOR = "Square Off Left Sensor";
-    public static String SQUARE_OFF_PID_RIGHT_SENSOR = "Square Off Right Sensor";
-    public static String SQUARE_OFF_PID_OUTPUT = "Square Off PID Output";
+    public static final String SQUARE_OFF_PID_ERROR = "Square Off PID Error";
+    public static final String SQUARE_OFF_PID_LEFT_SENSOR = "Square Off Left Sensor";
+    public static final String SQUARE_OFF_PID_RIGHT_SENSOR = "Square Off Right Sensor";
+    public static final String SQUARE_OFF_PID_OUTPUT = "Square Off PID Output";
     
-    public static String LIFT_DOWN_MULTIPLIER = "Lift Down Multiplier";
+    public static final String LIFT_DOWN_MULTIPLIER = "Lift Down Multiplier";
 	public static final String LIFT_DOWN_LIMIT = "Lift Down Limit";
 	public static final String LIFT_UP_LIMIT = "Lift Up Limit";
 	public static final String LIFT_RAMP_RATE = "Lift Ramp Rate";
     
-    public static String THROTTLE_RAMP_FUNCTION = "Throttle Ramp Function";
-    public static String STEER_RAMP_FUNCTION = "Steer Ramp Function";
-    public static String STRAFE_RAMP_FUNCTION = "Strafe Ramp Function";
-    public static String COMPRESSOR = "Compressor";
+    public static final String THROTTLE_RAMP_FUNCTION = "Throttle Ramp Function";
+    public static final String STEER_RAMP_FUNCTION = "Steer Ramp Function";
+    public static final String STRAFE_RAMP_FUNCTION = "Strafe Ramp Function";
+    public static final String COMPRESSOR = "Compressor";
     
-    public static String TOTE_COLLECTION = "Tote Collection Speed";
-    public static String TOTE_EJECTION = "Tote Ejection Speed";
+    public static final String TOTE_COLLECTION = "Tote Collection Speed";
+    public static final String TOTE_EJECTION = "Tote Ejection Speed";
 
     public static void intializeDashboard() {
         if (ENABLE_SPECTRUM_DASHBOARD) {
@@ -44,6 +46,7 @@ public class Dashboard {
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_P, 0);
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_I, 0);
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_D, 0);
+            SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_F, 0);
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_TOLERANCE, 5);
             
             SmartDashboard.putNumber(Dashboard.SQUARE_OFF_PID_ERROR, 0);
@@ -66,7 +69,11 @@ public class Dashboard {
     }
 
     private static void updatePut() {
-    	SmartDashboard.putNumber("Lift Pot", CommandBase.lift.liftTalon.getAnalogInRaw());
+    	SmartDashboard.putNumber("Lift Pot", CommandBase.lift.getPotValue());
+    	SmartDashboard.putData("Lift Up Limit Switch", CommandBase.lift.getUpLim());
+
+        if(CommandBase.drivebase.getIMU().isConnected())
+        	SmartDashboard.putNumber("Yaw", CommandBase.drivebase.getIMU().getYaw());
     }
 
     public static void updateDashboard() {
