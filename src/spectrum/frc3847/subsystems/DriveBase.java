@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author David, Matthew
  */
 public class DriveBase extends Subsystem{
-	
     private Victor fVic1, fVic2, fVic3, fVic4;
     private Victor fVicH;
     private Victor[] fVicArray;

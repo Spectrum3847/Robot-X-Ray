@@ -57,7 +57,7 @@ public class Dashboard {
             SmartDashboard.putNumber(LIFT_DOWN_MULTIPLIER, 0.25);
             SmartDashboard.putNumber(LIFT_DOWN_LIMIT, 731);
             SmartDashboard.putNumber(LIFT_UP_LIMIT, 900);
-            SmartDashboard.putNumber(LIFT_RAMP_RATE, 0.05);
+            SmartDashboard.putNumber(LIFT_RAMP_RATE, 8.00);
             
             SmartDashboard.putNumber(Dashboard.TOTE_COLLECTION, 0.3);
             SmartDashboard.putNumber(Dashboard.TOTE_EJECTION, -0.6);

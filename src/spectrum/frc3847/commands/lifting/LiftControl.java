@@ -18,6 +18,7 @@ public class LiftControl extends CommandBase {
 
 	protected void execute() {
 		lift.getTalon().setVoltageRampRate((int)SmartDashboard.getNumber(Dashboard.LIFT_RAMP_RATE, 1));
+		lift.getTalon().setVoltageRampRate((int)SmartDashboard.getNumber(Dashboard.LIFT_RAMP_RATE, 0.005));
 		lift.getTalon().setForwardSoftLimit((int)SmartDashboard.getNumber(Dashboard.LIFT_UP_LIMIT, 1023));
 		lift.getTalon().setReverseSoftLimit((int)SmartDashboard.getNumber(Dashboard.LIFT_DOWN_LIMIT, 0));
 		lift.getTalon().enableForwardSoftLimit(true);
