@@ -81,17 +81,18 @@ public class DriveBase extends Subsystem{
     public SpectrumDrive getDrive() {
         return fSpectrumDrive;
     }
-    
+
     public void setHWheel(double v) {
     	fVicH.set(v);
     }
-    
+
     public void setHLift(boolean drop) {
     	if(drop)
         	fLift.set(Value.kForward);
     	else
         	fLift.set(Value.kReverse);
     }
+    
     public void dropHWheel() {
     	fLift.set(Value.kForward);
     }

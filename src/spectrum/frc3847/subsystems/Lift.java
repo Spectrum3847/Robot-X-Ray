@@ -59,8 +59,12 @@ public class Lift extends Subsystem {
 		return liftTalon;
 	}
 	
-	public DigitalInput getUpLim() {
-		return fUpLim;
+	public boolean atUpLim() {
+		return !fUpLim.get();
+	}
+	
+	public boolean atLowLim() {
+		return !fLowLim.get();
 	}
 	
 	protected void initDefaultCommand() {

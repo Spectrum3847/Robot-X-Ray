@@ -39,11 +39,12 @@ public class Utilities {
     }
     
     public static double smartRamp(String key, double input) {
-    	Expression exp = new Expression(SmartDashboard.getString(key));
-    	return exp.with("x", BigDecimal.valueOf(input)).eval().doubleValue();
+    	String input_exp = SmartDashboard.getString(key).replaceAll(" ", "");
+    	Expression exp = new Expression(input_exp);
+    	return sign(input)*exp.with("x", BigDecimal.valueOf(input)).eval().doubleValue();
     }
     
-    public static double sign(double in) {
-        return in / -in;
+    public static double sign(double a) {
+        return a < 0 ? -1 : 1;
     }
 }
