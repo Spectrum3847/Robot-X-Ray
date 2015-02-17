@@ -9,11 +9,11 @@ package spectrum.frc3847;
 public class HW {
     /**DRIVEBASE MOTOR ASSIGNMENTS (PWM)**/
     public static final int FRONT_RDRIVE_MOTOR = 9;
-    public static final int FRONT_LDRIVE_MOTOR = 0;
+    public static final int FRONT_LDRIVE_MOTOR = 7;
     public static final int REAR_RDRIVE_MOTOR = 8;
     public static final int REAR_LDRIVE_MOTOR = 1;
     
-    public static final int H_WHEEL = 7;
+    public static final int H_WHEEL = 0;
     
     /**NON-DRIVEBASE MOTOR ASSIGNMENTS (PWM)**/
     public static final int LEFT_COLLECTOR_ID = 3;

@@ -21,6 +21,7 @@ public class Dashboard {
     public static final String DRIVEBASE_PID_D = "Drivebase PID D";
     public static final String DRIVEBASE_PID_F = "Drivebase PID F";
     public static final String DRIVEBASE_PID_TOLERANCE = "Drivebase PID Tolerance";
+    public static final String DRIVEBASE_PID_RANGE = "Drivebase PID Range";
     
     public static final String SQUARE_OFF_PID_ERROR = "Square Off PID Error";
     public static final String SQUARE_OFF_PID_LEFT_SENSOR = "Square Off Left Sensor";
@@ -43,11 +44,12 @@ public class Dashboard {
     public static void intializeDashboard() {
         if (ENABLE_SPECTRUM_DASHBOARD) {
         	SmartDashboard.putBoolean(COMPRESSOR, true);
-            SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_P, 0);
-            SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_I, 0);
-            SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_D, 0);
-            SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_F, 0);
-            SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_TOLERANCE, 5);
+            SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_P, 0.045);
+            SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_I, 0.050);
+            SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_D, 0.590);
+            SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_F, 0.120);
+            SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_TOLERANCE, 0.5);
+            SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_RANGE, 0.3);
             
             SmartDashboard.putNumber(Dashboard.SQUARE_OFF_PID_ERROR, 0);
             SmartDashboard.putNumber(Dashboard.SQUARE_OFF_PID_LEFT_SENSOR, 0);
@@ -71,8 +73,8 @@ public class Dashboard {
     private static void updatePut() {
     	SmartDashboard.putNumber("Lift Pot", CommandBase.lift.liftTalon.getAnalogInRaw());
 
-        if(CommandBase.drivebase.getIMU().isConnected())
-        	SmartDashboard.putNumber("Yaw", CommandBase.drivebase.getIMU().getYaw());
+    	SmartDashboard.putBoolean("IMU Connected", CommandBase.drivebase.getIMU().isConnected());
+        SmartDashboard.putNumber("Yaw", CommandBase.drivebase.getIMU().getYaw());
     }
 
     public static void updateDashboard() {

@@ -17,7 +17,6 @@ public class HaloStrafeDrive extends PIDCommand {
 		System.out.println("HaloStrafe, GO!");
 		CommandBase.drivebase.dropHWheel();
 		CommandBase.drivebase.getIMU().zeroYaw();
-		this.getPIDController().setOutputRange(-0.3, 0.3);
         this.getPIDController().setSetpoint(0);
 	}
 
@@ -26,7 +25,9 @@ public class HaloStrafeDrive extends PIDCommand {
 		double i = SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_I, 0)*0.001;
 		double d = SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_D, 0);
 		double t = SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_TOLERANCE, 0);
+		double range = SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_RANGE, 0.3);
 		this.getPIDController().setPID(p, i, d);
+		this.getPIDController().setOutputRange(-range, range);
 		this.getPIDController().setPercentTolerance(t);
 		
         //double turn = -Utilities.haloDeadBand(OI.gamepad.getRightX(), OI.gamepad.getLeftY(), .15, .17);
@@ -58,7 +59,7 @@ public class HaloStrafeDrive extends PIDCommand {
 	@Override
 	protected void usePIDOutput(double output) {
 		double sign = Math.abs(returnPIDInput())/returnPIDInput();
-		double f = sign*SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_F, 0);
+		double f = -sign*SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_F, 0);
         SmartDashboard.putNumber("PID output", f+output);
         CommandBase.drivebase.setArcade(0, output+f);
 	}

@@ -31,11 +31,13 @@ public class DriveBase extends Subsystem{
         h_wheel = new Victor(HW.H_WHEEL);
         spectrumDrive = new SpectrumDrive(Victor_1, Victor_2, Victor_3, Victor_4);
         hlift = new DoubleSolenoid(HW.HWHEEL_DOUBLE, HW.HWHEEL_DOUBLE+1);
-        serial = new SerialPort(115200, Port.kMXP);
+        serial = new SerialPort(115200, Port.kUSB);
+        serial.reset();
+        serial.disableTermination();
         imu = new IMU(serial, (byte)10);
     }
 
-    /**
+    /**r
      * Set the Default Command Sets it to driveSelector so that we always have
      * the correct drive mode re-enabled after breaking or turning.
      */
