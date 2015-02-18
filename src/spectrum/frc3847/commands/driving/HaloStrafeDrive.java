@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class HaloStrafeDrive extends PIDCommand {
-
+	private boolean IMUConnected;
+	
 	public HaloStrafeDrive() {
 		super(0, 0, 0, 0.01);
 	}
@@ -16,23 +17,35 @@ public class HaloStrafeDrive extends PIDCommand {
 	protected void initialize() {
 		System.out.println("HaloStrafe, GO!");
 		CommandBase.drivebase.dropHWheel();
-		CommandBase.drivebase.getIMU().zeroYaw();
-        this.getPIDController().setSetpoint(0);
+		IMUConnected = CommandBase.drivebase.getIMU().isConnected();
+		if(IMUConnected) {
+			CommandBase.drivebase.getIMU().zeroYaw();
+			this.getPIDController().setOutputRange(-0.3, 0.3);
+	        this.getPIDController().setSetpoint(0);
+		}
 	}
 
 	protected void execute() {
-		double p = SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_P, 0);
-		double i = SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_I, 0)*0.001;
-		double d = SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_D, 0);
-		double t = SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_TOLERANCE, 0);
-		double range = SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_RANGE, 0.3);
-		this.getPIDController().setPID(p, i, d);
-		this.getPIDController().setOutputRange(-range, range);
-		this.getPIDController().setPercentTolerance(t);
+		if(!IMUConnected) {
+			this.getPIDController().disable();
+	        double turn = -Utilities.haloDeadBand(OI.gamepad.getRightX(), OI.gamepad.getLeftY(), .15, .17);
+	        double scaled_turn = Utilities.smartRamp(Dashboard.STEER_RAMP_FUNCTION, turn);
+	        
+	        CommandBase.drivebase.setArcade(0, scaled_turn);
+		}
+		else {
+			this.getPIDController().enable();
+			double p = SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_P, 0);
+			double i = SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_I, 0)*0.001;
+			double d = SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_D, 0);
+			double t = SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_TOLERANCE, 0);
+			double range = SmartDashboard.getNumber(Dashboard.DRIVEBASE_PID_RANGE, 0.3);
+			this.getPIDController().setPID(p, i, d);
+			this.getPIDController().setOutputRange(-range, range);
+			this.getPIDController().setPercentTolerance(t);
+		}
 		
-        //double turn = -Utilities.haloDeadBand(OI.gamepad.getRightX(), OI.gamepad.getLeftY(), .15, .17);
         double triggers = OI.gamepad.getOldTriggers();
-        
         double scaled_triggers = Utilities.smartRamp(Dashboard.STRAFE_RAMP_FUNCTION, triggers);
         
         CommandBase.drivebase.setHWheel(scaled_triggers);

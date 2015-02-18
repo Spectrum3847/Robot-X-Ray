@@ -9,26 +9,21 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class ToteRake extends Subsystem {
-    
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	private SpectrumDoubleSolenoid drop;
-	
+	private SpectrumDoubleSolenoid fDrop;
+
 	public ToteRake(){
-		drop = new SpectrumDoubleSolenoid(HW.TOTERAKE_DS,HW.TOTERAKE_DS+1);
+		fDrop = new SpectrumDoubleSolenoid(HW.TOTERAKE_DS,HW.TOTERAKE_DS+1);
 	}
-	
+
 	public void drop(){
-		drop.set(Value.kForward);
+		fDrop.set(Value.kForward);
 	}
-	
+
 	public void recoup(){
-		drop.set(Value.kReverse);
+		fDrop.set(Value.kReverse);
 	}
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     }
 }
 

@@ -13,12 +13,11 @@ public class CompressorDashboard extends CommandBase {
 	}
 
 	protected void execute() {
-		if (SmartDashboard.getBoolean(Dashboard.COMPRESSOR, true)){
+		if (SmartDashboard.getBoolean(Dashboard.COMPRESSOR, true)) {
 			pneumatics.startCompressor();
 		} else {
 			pneumatics.stopCompressor();
 		}
-
 	}
 
 	protected boolean isFinished() {
@@ -32,5 +31,4 @@ public class CompressorDashboard extends CommandBase {
 	protected void interrupted() {
 		end();
 	}
-
 }

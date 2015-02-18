@@ -23,15 +23,12 @@ public class Dashboard {
     public static final String DRIVEBASE_PID_TOLERANCE = "Drivebase PID Tolerance";
     public static final String DRIVEBASE_PID_RANGE = "Drivebase PID Range";
     
-    public static final String SQUARE_OFF_PID_ERROR = "Square Off PID Error";
-    public static final String SQUARE_OFF_PID_LEFT_SENSOR = "Square Off Left Sensor";
-    public static final String SQUARE_OFF_PID_RIGHT_SENSOR = "Square Off Right Sensor";
-    public static final String SQUARE_OFF_PID_OUTPUT = "Square Off PID Output";
-    
     public static final String LIFT_DOWN_MULTIPLIER = "Lift Down Multiplier";
+    public static final String LIFT_UP_MULTIPLIER = "Lift Up Multiplier";
 	public static final String LIFT_DOWN_LIMIT = "Lift Down Limit";
 	public static final String LIFT_UP_LIMIT = "Lift Up Limit";
-	public static final String LIFT_RAMP_RATE = "Lift Ramp Rate";
+	public static final String LIFT_DOWN_RAMP_RATE = "Lift Down Ramp Rate";
+	public static final String LIFT_UP_RAMP_RATE = "Lift Up Ramp Rate";
     
     public static final String THROTTLE_RAMP_FUNCTION = "Throttle Ramp Function";
     public static final String STEER_RAMP_FUNCTION = "Steer Ramp Function";
@@ -44,6 +41,7 @@ public class Dashboard {
     public static void intializeDashboard() {
         if (ENABLE_SPECTRUM_DASHBOARD) {
         	SmartDashboard.putBoolean(COMPRESSOR, true);
+
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_P, 0.045);
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_I, 0.050);
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_D, 0.590);
@@ -51,15 +49,12 @@ public class Dashboard {
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_TOLERANCE, 0.5);
             SmartDashboard.putNumber(Dashboard.DRIVEBASE_PID_RANGE, 0.3);
             
-            SmartDashboard.putNumber(Dashboard.SQUARE_OFF_PID_ERROR, 0);
-            SmartDashboard.putNumber(Dashboard.SQUARE_OFF_PID_LEFT_SENSOR, 0);
-            SmartDashboard.putNumber(Dashboard.SQUARE_OFF_PID_RIGHT_SENSOR, 0);
-            SmartDashboard.putNumber(Dashboard.SQUARE_OFF_PID_OUTPUT, 0);
-            
             SmartDashboard.putNumber(LIFT_DOWN_MULTIPLIER, 0.25);
+            SmartDashboard.putNumber(LIFT_UP_MULTIPLIER, 1);
             SmartDashboard.putNumber(LIFT_DOWN_LIMIT, 731);
             SmartDashboard.putNumber(LIFT_UP_LIMIT, 900);
-            SmartDashboard.putNumber(LIFT_RAMP_RATE, 8.00);
+            SmartDashboard.putNumber(LIFT_DOWN_RAMP_RATE, 8.00);
+            SmartDashboard.putNumber(LIFT_UP_RAMP_RATE, 8.00);
             
             SmartDashboard.putNumber(Dashboard.TOTE_COLLECTION, 0.3);
             SmartDashboard.putNumber(Dashboard.TOTE_EJECTION, -0.6);
@@ -71,7 +66,11 @@ public class Dashboard {
     }
 
     private static void updatePut() {
-    	SmartDashboard.putNumber("Lift Pot", CommandBase.lift.liftTalon.getAnalogInRaw());
+    	SmartDashboard.putNumber("Lift Pot", CommandBase.lift.getPotValue());
+    	SmartDashboard.putNumber("Pressure", CommandBase.pneumatics.getPressure());
+    	
+    	SmartDashboard.putBoolean("Lift Low Limit Switch", CommandBase.lift.atLowLim());
+    	SmartDashboard.putBoolean("Lift Up Limit Switch", CommandBase.lift.atUpLim());
 
     	SmartDashboard.putBoolean("IMU Connected", CommandBase.drivebase.getIMU().isConnected());
         SmartDashboard.putNumber("Yaw", CommandBase.drivebase.getIMU().getYaw());
@@ -84,7 +83,6 @@ public class Dashboard {
                 updatePut();
             }
             if ((Timer.getFPGATimestamp() - longOldTime) > LONG_DELAY) {
-                //Thing that should be updated every LONG_DELAY
                 longOldTime = Timer.getFPGATimestamp();
             }
         }
