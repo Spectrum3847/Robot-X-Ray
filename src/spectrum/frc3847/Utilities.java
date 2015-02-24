@@ -39,9 +39,9 @@ public class Utilities {
     }
     
     public static double smartRamp(String key, double input) {
-    	String input_exp = SmartDashboard.getString(key).replaceAll(" ", "");
+    	String input_exp = SmartDashboard.getString(key);//.replaceAll(" ", "");
     	Expression exp = new Expression(input_exp);
-    	return sign(input)*exp.with("x", BigDecimal.valueOf(input)).eval().doubleValue();
+    	return exp.with("x", BigDecimal.valueOf(input)).eval().doubleValue();
     }
     
     public static double sign(double a) {

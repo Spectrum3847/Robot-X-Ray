@@ -13,9 +13,10 @@ public class CompressorDashboard extends CommandBase {
 	}
 
 	protected void execute() {
-		if (SmartDashboard.getBoolean(Dashboard.COMPRESSOR, true)) {
+		if(SmartDashboard.getBoolean(Dashboard.COMPRESSOR, true) && !pneumatics.getCompressor().enabled()) {
 			pneumatics.startCompressor();
-		} else {
+		} 
+		else if (!SmartDashboard.getBoolean(Dashboard.COMPRESSOR) && pneumatics.getCompressor().enabled()){
 			pneumatics.stopCompressor();
 		}
 	}

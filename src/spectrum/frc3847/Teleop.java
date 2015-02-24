@@ -10,7 +10,7 @@ public class Teleop {
     public static void init() {
         Scheduler.getInstance().removeAll();
         Init.liftcontrol.start();
-        //Init.sendCam.start();
+        Init.forkcontrol.start();
     }
 
     public static void periodic() {

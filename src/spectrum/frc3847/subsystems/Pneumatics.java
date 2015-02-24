@@ -1,7 +1,6 @@
 package spectrum.frc3847.subsystems;
 
 import spectrum.frc3847.HW;
-import spectrum.frc3847.commands.CompressorDashboard;
 import spectrum.frc3847.driver.AnalogPressure;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -28,7 +27,11 @@ public class Pneumatics extends Subsystem {
 		return fPressure.getPressure();
 	}
 	
+	public Compressor getCompressor() {
+		return fCompressor;
+	}
+	
 	protected void initDefaultCommand() {
-        setDefaultCommand(new CompressorDashboard());
+        //setDefaultCommand(Init.compressordashboard);
 	}
 }

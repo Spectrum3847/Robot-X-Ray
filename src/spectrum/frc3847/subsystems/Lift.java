@@ -5,6 +5,7 @@ import spectrum.frc3847.driver.SpectrumDoubleSolenoid;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.ControlMode;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -12,17 +13,18 @@ public class Lift extends Subsystem {
 
 	private CANTalon liftTalon;
 	private CANTalon liftTalon2;
-	private SpectrumDoubleSolenoid fTilt;
+	private DoubleSolenoid fTilt;
 	private SpectrumDoubleSolenoid fLock;
 	public DigitalInput fUpLim;
 	private DigitalInput fLowLim;
 	
 	public Lift() {
-		fTilt = new SpectrumDoubleSolenoid(HW.LIFT_TILT_DOUBLE, HW.LIFT_TILT_DOUBLE + 1);
+		fTilt = new DoubleSolenoid(HW.LIFT_TILT_DOUBLE, HW.LIFT_TILT_DOUBLE + 1);
 		fLock = new SpectrumDoubleSolenoid(HW.LIFT_LOCK_DOUBLE, HW.LIFT_LOCK_DOUBLE + 1);
 		liftTalon = new CANTalon(HW.LIFT_TALON_ID);
 		liftTalon2 = new CANTalon(HW.LIFT_TALON_ID_TWO);
 		fUpLim = new DigitalInput(1);
+		fLowLim = new DigitalInput(2);
 		
 		liftTalon.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
 		liftTalon2.changeControlMode(ControlMode.Follower);

@@ -30,8 +30,11 @@ public class DriveBase extends Subsystem{
         fVicH = new Victor(HW.H_WHEEL);
         fSpectrumDrive = new SpectrumDrive(fVic1, fVic2, fVic3, fVic4);
         fLift = new DoubleSolenoid(HW.HWHEEL_DOUBLE, HW.HWHEEL_DOUBLE+1);
-        fSerial = new SerialPort(115200, Port.kMXP);
-        fIMU = new IMU(fSerial, (byte)10);
+        fSerial = new SerialPort(57600, Port.kMXP);
+        fSerial.setReadBufferSize(1);
+        fSerial.setWriteBufferSize(1);
+        fSerial.setTimeout(1);
+        try {fIMU = new IMU(fSerial, (byte)10);}catch(Exception e){e.printStackTrace();}
     }
 
     /**r

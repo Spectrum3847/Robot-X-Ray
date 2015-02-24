@@ -410,7 +410,7 @@ public class IMU extends SensorBase implements PIDSource, LiveWindowSendable, Ru
                         }
                     }
                 
-                    if ( ( packets_received == 0 ) && ( bytes_read == 256 ) ) {
+                    if ( ( packets_received == 0 ) && !isConnected()) {
                         // Workaround for issue found in Java SerialPort implementation:
                         // No packets received and 256 bytes received; this
                         // condition occurs in the Java SerialPort.  In this case,

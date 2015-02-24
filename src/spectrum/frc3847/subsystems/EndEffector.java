@@ -29,17 +29,17 @@ public class EndEffector extends Subsystem {
 		fSolenoid.set(Value.kReverse);
 	}
 
-	public void setCollection(double x){
+	public void setFork(double x){
 		leftAlign.set(-x);
 		rightAlign.set(x);
 	}
 	
 	public void collectionIn(){
-		setCollection(SmartDashboard.getNumber(Dashboard.TOTE_COLLECTION, 0.6));
+		setFork(SmartDashboard.getNumber(Dashboard.TOTE_COLLECTION, 0.6));
 	}
 	
 	public void collectionOut(){
-		setCollection(SmartDashboard.getNumber(Dashboard.TOTE_EJECTION, -1.0));
+		setFork(SmartDashboard.getNumber(Dashboard.TOTE_EJECTION, -1.0));
 	}
     protected void initDefaultCommand() {
     }
