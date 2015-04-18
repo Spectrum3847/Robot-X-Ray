@@ -26,7 +26,7 @@ public class HW {
     public static final int TAPE_TALON_ID_TWO = 2;
     
     /**DIGITAL SENSOR ALLOCATIONS**/
-    
+
     /**Pneumatics**/
     public static final int PCM_ONE = 0;
     public static final int PCM_TWO = 1;
