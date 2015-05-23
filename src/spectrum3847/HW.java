@@ -20,7 +20,7 @@ public class HW {
     public static final int LIFT_TALON_ID_TWO = 2;
     
     /**DIGITAL SENSOR ALLOCATIONS**/
-    
+
     /**Pneumatics**/
     public static final int PCM_ONE = 0;
 
