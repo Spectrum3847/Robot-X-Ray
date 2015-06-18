@@ -15,13 +15,13 @@ public class CollectControl extends CommandBase {
 
     @Override
     protected void initialize() {
-    	collector.setCollector(0);
+    	collector.setCollectorBottom(0);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-		double pow = Utilities.deadBand(OI.gamepad_aux.getRightY(), 0.18);
-		collector.setCollector(pow);
+		double pow = -Utilities.deadBand(OI.gamepad_aux.getRightY(), 0.18);
+		collector.setCollectorBottom(pow);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,7 +31,7 @@ public class CollectControl extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	collector.setCollector(0);
+    	collector.setCollectorBottom(0);
     }
 
     // Called when another command which requires one or more of the same

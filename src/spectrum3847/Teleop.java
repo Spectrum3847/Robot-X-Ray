@@ -1,6 +1,5 @@
 package spectrum3847;
 
-import spectrum3847.commands.CommandBase;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
@@ -9,7 +8,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  */
 public class Teleop {
     public static void init() {
-        CommandBase.cangrabber.reelGrabber();
         Scheduler.getInstance().removeAll();
         Init.liftcontrol.start();
         Init.collectcontrol.start();
@@ -22,6 +20,5 @@ public class Teleop {
 
     public static void cancel() {
         Scheduler.getInstance().removeAll();
-        CommandBase.cangrabber.reelGrabber();
     }
 }

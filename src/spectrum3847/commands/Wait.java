@@ -1,6 +1,8 @@
 package spectrum3847.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) FIRST 2008-2012. All Rights Reserved.                        */

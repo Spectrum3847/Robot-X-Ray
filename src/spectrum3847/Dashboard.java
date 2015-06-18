@@ -24,7 +24,8 @@ public class Dashboard {
     public static final String STEER_RAMP_FUNCTION = "Steer Ramp Function";
     public static final String STRAFE_RAMP_FUNCTION = "Strafe Ramp Function";
     public static final String COMPRESSOR = "Compressor";
-    
+
+    public static final String TOTE_TOP_COLLECTION = "Tote Top Collection Speed";
     public static final String TOTE_COLLECTION = "Tote Collection Speed";
     public static final String TOTE_EJECTION = "Tote Ejection Speed";
 	public static final String AUTON_FORWARD_SPEED = "Auton Forward Speed";
@@ -36,10 +37,11 @@ public class Dashboard {
         	SmartDashboard.putBoolean(COMPRESSOR, true);
             
             SmartDashboard.putNumber(LIFT_DOWN_MULTIPLIER, 0.25);
-            SmartDashboard.putNumber(LIFT_UP_MULTIPLIER, 1);
+            SmartDashboard.putNumber(LIFT_UP_MULTIPLIER, 1.0);
             SmartDashboard.putNumber(LIFT_DOWN_RAMP_RATE, 8.00);
             SmartDashboard.putNumber(LIFT_UP_RAMP_RATE, 8.00);
-            
+
+            SmartDashboard.putNumber(Dashboard.TOTE_TOP_COLLECTION, 1.0);
             SmartDashboard.putNumber(Dashboard.TOTE_COLLECTION, 0.3);
             SmartDashboard.putNumber(Dashboard.TOTE_EJECTION, -0.6);
 

@@ -14,9 +14,13 @@ public class OI {
     public static final Gamepad gamepad_aux = new Gamepad(HW.usbPort_one);
    
     public static final Button expand_toggle = new JoystickButton(gamepad_aux.getGamepad(), Gamepad.A_BUTTON);
+    public static final Button collect_top_toggle = new JoystickButton(gamepad_aux.getGamepad(), Gamepad.LEFT_BUMPER);
+    public static final Button collect_actuate_toggle = new JoystickButton(gamepad_aux.getGamepad(), Gamepad.RIGHT_BUMPER);
 
     //Use this constructor to setup up button schedulers for commands
     public OI() {
         expand_toggle.toggleWhenPressed(Init.expand);
+        collect_top_toggle.toggleWhenPressed(Init.collecttop);
+        collect_actuate_toggle.toggleWhenPressed(Init.collectactuate);
     }
 }

@@ -1,7 +1,6 @@
 package spectrum3847.commands;
 
 import spectrum3847.OI;
-import spectrum3847.subsystems.CanGrabber;
 import spectrum3847.subsystems.Collector;
 import spectrum3847.subsystems.DriveBase;
 import spectrum3847.subsystems.Lift;
@@ -20,7 +19,6 @@ public abstract class CommandBase extends Command {
     public static Lift lift = new Lift();
     public static Collector collector = new Collector();
     public static Pneumatics pneumatics = new Pneumatics();
-    public static CanGrabber cangrabber = new CanGrabber();
 
     // Create a single static instance of all of your subsystems
     public static void init() {

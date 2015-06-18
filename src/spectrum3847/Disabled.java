@@ -1,6 +1,5 @@
 package spectrum3847;
 
-import spectrum3847.commands.CommandBase;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -27,8 +26,6 @@ public class Disabled {
         t++;
         Scheduler.getInstance().run();
         Dashboard.updateDashboard();
-        CommandBase.cangrabber.lengthen();
-        CommandBase.cangrabber.castGrabber();
     }
 
     public static void continuous() {
